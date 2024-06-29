@@ -4,7 +4,7 @@ from django.shortcuts import render, HttpResponse, redirect
 
 
 layout = """
-    <h1> Proyecto Web (LP3 - 2024) | Flor Cerdán </h1>
+    <h1> Proyecto Web (LP3 - 2024) | Anderson Mancilla Aquino </h1>
     <hr/>
     <ul>
         <li>
@@ -25,11 +25,24 @@ layout = """
 
 
 def index(request):
-    return render(request, 'index.html')
+    estudiantes = [ 'Isabella Caballero', 
+                    'Alejandro Hermitaño',
+                    'Joan Palomino',
+                    'Pierre Bernaola']
+    
+    return render(request,'index.html', {
+        'titulo':'Inicio',
+        'mensaje':'Proyecto Web Con DJango',
+        'estudiantes': estudiantes
+    })
+
+
 
 
 def saludo(request):
-    return render(request, 'saludo.html')
+    return render(request,'saludo.html',{
+        'titulo':'Saludo',
+    })
 
 
 
@@ -66,3 +79,15 @@ def rango2(request,a=0,b=100):
         a+=1
     resultado += "</ul"
     return HttpResponse(layout + resultado)
+
+
+def rango(request):
+    a = 10
+    b = 20
+    rango_numeros = range(a,b+1)
+    return render(request,'rango.html',{
+        'titulo':'Rango',
+        'a':a,
+        'b':b,
+        'rango_numeros':rango_numeros
+    })
